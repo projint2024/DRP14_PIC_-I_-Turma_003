@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Memorial de Cálculo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Criar Memorial de Cálculo</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Militar" name="militar">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Protocolo do Memorial" name="protocolo_memorial">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Ofício DP" name="oficio_dp">
+        </div>
+
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="RE do Militar Incluso" name="RE_do_MilitarIncluso" value="{{ militar.RE }}" readonly>
+        </div>
+
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Posto ou Graduação" name="posto_graduacao">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Nome do Militar Incluso" name="nome_MilitarIncluso">
+        </div>
+        <div class="form-group">
+            <input type="date" class="form-control" name="data_agregacao">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Mês de Referência" name="mes_referencia">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Salário Padrão" name="salario_padrao">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="RETP" name="retp">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Adicionais" name="adicionais">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Sexta Parte" name="sexta_parte">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Hora/Aula" name="hora_aula">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="RETP Incorporado Hora/Aula" name="retp_incorp_hora_aula">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="ATS Incorporado Hora/Aula" name="ats_incorp_hora_aula">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Sexta Parte Incorporado Hora/Aula" name="sexta_parte_incorp_hora_aula">
+        </div>
+
+
+        <div id="outros-campos">
+            <div class="form-group">
+                <label for="id_incluir_outros">Incluir Outros:</label>
+                <input type="checkbox" id="id_incluir_outros">
+            </div>
+            <div id="outros-fields" style="display: none;">
+                <!-- Adicione a estrutura HTML para os campos "Outros" -->
+            </div>
+        </div>
+        <button type="button" id="add-outro" class="btn btn-secondary mt-3">Adicionar Outro Campo</button>
+
+        <!-- Botão de envio -->
+        <button type="submit" class="btn btn-primary">Salvar Memorial</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('add-outro').addEventListener('click', function() {
+        let outrosCampos = document.getElementById('outros-fields');
+        let novoCampo = document.createElement('div');
+        novoCampo.classList.add('form-group');
+        novoCampo.innerHTML = `
+            <input type="text" class="form-control" placeholder="Nome do Campo" name="nome_campo">
+            <input type="text" class="form-control" placeholder="Valor" name="valor">
+        `;
+        outrosCampos.appendChild(novoCampo);
+    });
+
+    document.getElementById('id_incluir_outros').addEventListener('change', function() {
+        let outrosFields = document.getElementById('outros-fields');
+        if (this.checked) {
+            outrosFields.style.display = 'block';
+        } else {
+            outrosFields.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>

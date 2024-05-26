@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- militar_confirm_delete.html -->
+
+<h1>Confirmar Exclusão</h1>
+
+<p>Tem certeza que deseja excluir o militar "{{ object.nome }}"?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+</form>
+</body>
+</html>

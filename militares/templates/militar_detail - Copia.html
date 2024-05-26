@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Militar</title>
+</head>
+<body>
+    <h1>Detalhes do Militar</h1>
+    <p><strong>Nome:</strong> {{ militar.nome }}</p>
+    <p><strong>Posto/Graduação:</strong> {{ militar.posto_graduacao }}</p>
+    <!-- Adicione mais detalhes conforme necessário -->
+
+    <h2>Beneficiários</h2>
+    <ul>
+        {% for beneficiario in beneficiarios %}
+            <li>{{ beneficiario.nome }} - {{ beneficiario.cpf }} <a href="{% url 'militares:beneficiario_update' pk=militar.pk pk_beneficiario=beneficiario.pk %}">Editar</a> </li>
+            <!-- Adicione mais detalhes do beneficiário conforme necessário -->
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'militares:militar_update' pk=militar.pk %}">Editar</a>
+    <form action="{% url 'militares:militar_delete' pk=militar.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Excluir">
+    </form>
+
+    <h2>Adicionar Beneficiário</h2>
+    <form action="{% url 'militares:beneficiario_create' pk=militar.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Adicionar">
+    </form>
+
+    <a href="{% url 'militares:beneficiario_create' pk=militar.pk %}">Adicionar Beneficiário</a>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!-- Lista de Memoriais -->
+<h2>Lista de Memoriais</h2>
+<ul>
+    {% for memorial in memoriais %}
+    <li><a href="{% url 'detalhes_memorial' memorial.pk %}">{{ memorial.protocolo_memorial }}</a></li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<!-- Detalhes do Memorial -->
+{% if memorial %}
+    <h2>Detalhes do Memorial</h2>
+    <p>Protocolo: {{ memorial.protocolo_memorial }}</p>
+    <p>Ofício DP: {{ memorial.oficio_dp }}</p>
+    <p>RE do Militar Incluso: {{ memorial.RE_do_MilitarIncluso }}</p>
+    <!-- Adicione aqui os outros campos do modelo MemorialDeCalculo -->
+{% endif %}
+
+<hr>
+
+<!-- Formulário de Edição do Memorial -->
+{% if form %}
+    <h2>Editar Memorial</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar Alterações</button>
+    </form>
+{% endif %}
+
+<hr>
+
+<!-- Formulário de Criação de Memorial -->
+<h2>Criar Novo Memorial</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Criar Memorial</button>
+</form>

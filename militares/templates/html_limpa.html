@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#id_incluir_outros').change(function(){
+        if($(this).is(":checked")) {
+            $('#outros_fields').show();
+        } else {
+            $('#outros_fields').hide();
+        }
+    });
+});
+</script>
+
+</head>
+<body>
+
+{% block content %}
+  <h2>Criar Memorial de Cálculo</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ memorial_form.as_p }}
+
+    <h3>Outros Campos</h3>
+    <div id="outros-campos">
+      {{ formset.management_form }}
+      {% for form in formset %}
+      <div>
+        <label for="id_incluir_outros">Incluir Outros:</label>
+        {{ form.incluir_outros }}
+      </div>
+        <div id="outros_fields" style="display: none;">
+          {{ form.as_p }}
+          {% if form.instance.pk %}
+            <button type="button" class="remove-outro">Remover</button>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <button type="button" id="add-outro">Adicionar Outro Campo</button>
+    <button type="submit">Salvar Memorial</button>
+  </form>
+
+  <script>
+    document.getElementById('add-outro').addEventListener('click', function() {
+      let outrosCampos = document.getElementById('outros-campos');
+      let newForm = outrosCampos.children[0].cloneNode(true);
+      let totalForms = document.getElementById('id_form-TOTAL_FORMS');
+      let formNum = parseInt(totalForms.value);
+
+      newForm.innerHTML = newForm.innerHTML.replace(/__prefix__/g, formNum);
+      totalForms.value = formNum + 1;
+
+      outrosCampos.appendChild(newForm);
+    });
+
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.className == 'remove-outro') {
+        e.target.parentElement.remove();
+      }
+    });
+  </script>
+{% endblock %}
+
+
+
+
+</body>
+</html>

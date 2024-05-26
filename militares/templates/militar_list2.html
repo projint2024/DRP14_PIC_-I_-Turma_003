@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Militares</title>
+</head>
+<body>
+    <h1>Lista de Militares</h1>
+    <ul>
+        {% for militar in militares %}
+            <li> {{ militar.RE }} ({{ militar.posto_graduacao }}) <a href="{% url 'militares:militar_detail' pk=militar.pk %}">{{ militar.nome }}</a> {{ militar.nome }} </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'militares:militar_create' %}">Adicionar Militar</a>
+
+
+</body>
+</html>

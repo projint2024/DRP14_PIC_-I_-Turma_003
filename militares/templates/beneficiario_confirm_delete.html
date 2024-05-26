@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- militares/templates/militares/beneficiario_confirm_delete.html -->
+
+<h2>Confirmar exclusão do beneficiário</h2>
+<p>Tem certeza que deseja excluir o beneficiário "{{ object.nome }}"?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+</form>
+</body>
+</html>

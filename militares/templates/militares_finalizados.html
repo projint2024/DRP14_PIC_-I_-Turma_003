@@ -1,0 +1,51 @@
+<!-- militares_finalizados.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Militares Finalizados</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Militares Finalizados</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>RE</th>
+                <th>Posto/Graduação</th>
+                <th>Nome</th>
+                <th>Adicionais</th>
+                <th>Dependentes</th>
+                <th>Sexta Parte</th>
+                <th>Hora Aula</th>
+                <th>Data de Agregação</th>
+                <th>Data de Saída</th>
+                <th>Ofício DP</th>
+                <th>Mês de Referência</th>
+                <th>Pag. a Contar De</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for militar in militares %}
+            <tr>
+
+                <td><a href="{% url 'militares:militar_finalizado_detail' militar.RE %}">Detalhes do Militar</a></td>
+                <td>{{ militar.posto_graduacao }}</td>
+                <td>{{ militar.nome }}</td>
+                <td>{{ militar.adicionais }}</td>
+                <td>{{ militar.dependentes }}</td>
+                <td>{{ militar.sexta_parte }}</td>
+                <td>{{ militar.hora_aula }}</td>
+                <td>{{ militar.data_agregacao }}</td>
+                <td>{{ militar.data_saida }}</td>
+                <td>{{ militar.oficio_dp }}</td>
+                <td>{{ militar.mes_referencia }}</td>
+                <td>{{ militar.pag_a_contar_de }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!-- militar_finalizado_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Militar Finalizado</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Detalhes do Militar Finalizado</h2>
+    <div class="card mb-3">
+        <div class="card-header">
+            <strong>{{ militar.nome }}</strong> (RE: {{ militar.RE }})
+        </div>
+        <div class="card-body">
+            <p><strong>Posto/Graduação:</strong> {{ militar.posto_graduacao }}</p>
+            <p><strong>Adicionais:</strong> {{ militar.adicionais }}</p>
+            <p><strong>Dependentes:</strong> {{ militar.dependentes }}</p>
+            <p><strong>Sexta Parte:</strong> {{ militar.sexta_parte }}</p>
+            <p><strong>Hora Aula:</strong> {{ militar.hora_aula }}</p>
+            <p><strong>Data de Agregação:</strong> {{ militar.data_agregacao }}</p>
+            <p><strong>Data de Saída:</strong> {{ militar.data_saida }}</p>
+            <p><strong>Ofício DP:</strong> {{ militar.oficio_dp }}</p>
+            <p><strong>Mês de Referência:</strong> {{ militar.mes_referencia }}</p>
+            <p><strong>Pag. a Contar De:</strong> {{ militar.pag_a_contar_de }}</p>
+        </div>
+    </div>
+
+    <h3>Beneficiários</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>CPF</th>
+                <th>Nome</th>
+                <th>Agência/CC</th>
+                <th>Cota</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for beneficiario in beneficiarios %}
+            <tr>
+                <td>{{ beneficiario.cpf }}</td>
+                <td>{{ beneficiario.nome }}</td>
+                <td>{{ beneficiario.agencia_cc }}</td>
+                <td>{{ beneficiario.cota }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

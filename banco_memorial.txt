@@ -1,0 +1,37 @@
+agora preciso criar um banco de dados chamado  "memorial_de_calculo", sendo que cada militar incluso pode ter varios memoriais de calculo.
+Esse banco tera  as seguintes informações:
+
+protocolo_memorial
+oficio_dp
+Dados do militar:
+	RE_do_MilitarIncluso
+	posto_graduacao
+	nome_MilitarIncluso
+data_ agregaçao
+mes_referencia
+salario_padrao
+retp
+adicionais
+sexta_parte
+hora_aula
+retp_incorp_hora_aula
+ats_incorp_hora_aula
+sexta_parte_incorp_hora_aula
+outros
+total_bruto
+meses_serem_pagos
+total_empenhado
+auxilio_reclusao
+beneficiarios:
+	nome_do_beneficiario 
+	cpf_do_beneficiario
+	agencia_cc_do_beneficiario
+	cota_do_beneficiario
+	IR_do_beneficiario
+	Contribuicao_prev_do_beneficiario
+	CBPM
+	Auxilio_liquido_do_beneficiario
+ 
+soma_total_pg
+
+

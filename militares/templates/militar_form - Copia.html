@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Militar</title>
+    <!-- Bootstrap CSS local -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Adicionar Militar</h1>
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <!-- 1. Oficio dp -->
+        <div class="form-group">
+            <label for="id_oficio_dp">Oficio dp:</label>
+            {{ form.oficio_dp }}
+        </div>
+
+        <!-- 3. RE -->
+        <div class="form-group">
+            <label for="id_re">RE:</label>
+            {{ form.RE }}
+        </div>
+        <!-- 4. Posto graduacao -->
+        <div class="form-group">
+            <label for="id_posto_graduacao">Posto graduação:</label>
+            {{ form.posto_graduacao }}
+        </div>
+        <!-- 5. Nome -->
+        <div class="form-group">
+            <label for="id_nome">Nome:</label>
+            {{ form.nome }}
+        </div>
+        <!-- 6. Adicionais -->
+        <div class="form-group">
+            <label for="id_adicionais">Adicionais:</label>
+            {{ form.adicionais }}
+        </div>
+        <!-- 7. Dependentes -->
+        <div class="form-group">
+            <label for="id_dependentes">Dependentes:</label>
+            {{ form.dependentes }}
+        </div>
+        <!-- 8. Sexta parte -->
+        <div class="form-group">
+            <label for="id_sexta_parte">Sexta parte:</label>
+            {{ form.sexta_parte }}
+        </div>
+        <!-- 9. Incluir hora aula? -->
+        <div class="form-group">
+            <label for="id_incluir_hora_aula">Incluir hora aula?</label>
+            {{ form.incluir_hora_aula }}
+        </div>
+        <!-- 10. Campo de Hora aula (se selecionado) -->
+        <div id="horaAulaField" class="form-group {% if not form.incluir_hora_aula.value %}hidden{% endif %}">
+            <label for="id_hora_aula">Hora aula:</label>
+            {{ form.hora_aula }}
+        </div>
+        <!-- 11. Data agregação -->
+        <div class="form-group">
+            <label for="id_data_agregacao">Data agregação:</label>
+            {{ form.data_agregacao }}
+        </div>
+        <!-- 12. Mes referência -->
+        <div class="form-group">
+            <label for="id_mes_referencia">Mês referência:</label>
+            {{ form.mes_referencia }}
+        </div>
+        <!-- 13. Pag a contar de -->
+        <div class="form-group">
+            <label for="id_pag_a_contar_de">Pag a contar de:</label>
+            {{ form.pag_a_contar_de }}
+        </div>
+        <!-- 14. Incluir Data de Saída? -->
+        <div class="form-group">
+            <label for="id_incluir_data_saida">Incluir Data de Saída?</label>
+            {{ form.incluir_data_saida }}
+        </div>
+        <!-- 15. Campo de Data Saída (se selecionado) -->
+        <div id="dataSaidaField" class="form-group {% if not form.incluir_data_saida.value %}hidden{% endif %}">
+            <label for="id_data_saida">Data saída:</label>
+            {{ form.data_saida }}
+        </div>
+        <!-- Botão de envio -->
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS local -->
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+<!-- Seu JavaScript personalizado -->
+<script>
+    // Script para controlar a visibilidade do campo de Hora aula e Data saída
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleHoraAula = document.getElementById('id_incluir_hora_aula');
+        const toggleDataSaida = document.getElementById('id_incluir_data_saida');
+        const horaAulaField = document.getElementById('horaAulaField');
+        const dataSaidaField = document.getElementById('dataSaidaField');
+
+        toggleHoraAula.addEventListener('change', function() {
+            horaAulaField.classList.toggle('hidden', !this.checked);
+        });
+
+        toggleDataSaida.addEventListener('change', function() {
+            dataSaidaField.classList.toggle('hidden', !this.checked);
+        });
+    });
+</script>
+</body>
+</html>
